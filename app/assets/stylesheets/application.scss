@@ -2,6 +2,7 @@
 
 html, body{
   font-family: 'Helvetica Neue';
+  height: 100%;
 }
 
 .navbar-brand{
@@ -16,3 +17,13 @@ html, body{
 .bg-orange{
   background-color: #EE4E2E !important;
 }
+
+.btn-orange{
+  background-color: #EE4E2E !important;
+  color: #fff !important;
+}
+
+.form-control:focus {
+  border-color: #EE4E2E !important;
+  box-shadow: 0 0 0 0.1rem #fff !important;
+} 
