@@ -52,3 +52,6 @@ gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 gem 'jquery-rails', '~> 4.4'
 gem 'simple_form', '~> 5.1'
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+gem 'chartkick', '~> 4.1', '>= 4.1.3'
+gem "groupdate"

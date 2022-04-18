@@ -1,0 +1,79 @@
+<% content_for :title do %>
+  All Categories
+<% end %>
+
+<%= render "shared/admin_nav" %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">
+      <div class="p-5 text-center bg-light">
+        <h1 class="mb-3">Product Categories</h1>
+        <h4 class="mb-3">Total <%= Category.all.count %> <%= Category.all.count > 1? "categories":"category"%> found!</h4>
+        <%= link_to new_category_path, :class=>"btn btn-orange" do %>
+          <i class="fa-solid fa-plus"></i> New Category
+        <% end %>
+        <!--------------------- CHART ------------------->
+          <div class="card mt-3">
+            <div class="card-body">
+              <%= line_chart Category.group_by_day(:created_at).count %>
+            </div>
+          </div>
+        <!--------------------/ CHART ------------------->
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-4">
+    <div class="col-lg-12 col-sm-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Active Since</th>
+            <th>Name</th>
+            <th>Products</th>
+            <th colspan="3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= category.id %></td>
+              <td><%= category.created_at.strftime("%B, %d, %Y") %></td>
+              <td><%= link_to category.name, category %></td>
+              <td><span class="badge rounded-pill badge-primary pt-2">112</span></td>
+              <td><%= link_to 'Show', category, :class=>"link-orange" %></td>
+              <td><%= link_to 'Edit', edit_category_path(category), :class=>"link-orange" %></td>
+              <td>
+                <a href="#" class="link-orange" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Delete</a>
+              </td>
+            </tr>
+            
+            <!------------------------- MODAL ----------------------->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      After you delete the category, you can't restore it.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                      <%= link_to category, method: :delete, :class=>"btn btn-danger" do %>
+                        Delete
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!------------------------/ MODAL ----------------------->
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

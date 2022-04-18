@@ -7,13 +7,18 @@ html, body{
 
 .navbar-brand{
   font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: #fff !important;
 }
 
-.navbar-light{
-  a{
-    color: #fff !important;
-  }
+.navbar-light .navbar-nav .nav-link {
+  color:  #E0E0E0 !important;
 }
+
+.navbar-light .navbar-nav .nav-link.active {
+  color:  #fff !important;
+}
+
 .bg-orange{
   background-color: #EE4E2E !important;
 }
@@ -26,4 +31,16 @@ html, body{
 .form-control:focus {
   border-color: #EE4E2E !important;
   box-shadow: 0 0 0 0.1rem #fff !important;
-} 
+}
+
+.text-justify{
+  text-align: justify !important;
+}
+
+.badge-orange{
+  background-color: #f07a63 !important;
+}
+
+.link-orange{
+  color: #EE4E2E !important;
+}

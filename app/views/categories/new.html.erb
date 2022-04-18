@@ -1,0 +1,22 @@
+<% content_for :title do %>
+  New Category
+<% end %>
+
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-lg-7 col-sm-12">
+        <div class="card">
+          <div class="ms-4">
+            <%= link_to categories_path, :class=>"btn btn-light" do %>
+              <i class="fas fa-arrow-left"></i>
+            <% end %>
+            <span class="h4 text-muted mb-5 fw-bold ms-2">Add A New Category</span>
+          </div>
+          <hr class="style3">
+          <div class="card-body">
+            <%= render 'form', category: @category %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
