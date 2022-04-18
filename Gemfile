@@ -50,3 +50,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 gem 'jquery-rails', '~> 4.4'
+gem 'simple_form', '~> 5.1'
