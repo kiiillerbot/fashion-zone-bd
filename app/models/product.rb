@@ -1,10 +1,11 @@
-class Category < ApplicationRecord
+class Product < ApplicationRecord
+  belongs_to :category
   belongs_to :user
-  has_many :products, dependent: :destroy
 
   extend FriendlyId
   friendly_id :name, use: :slugged
 
   validates_presence_of :name
+  validates_presence_of :image
   validates_presence_of :description
 end

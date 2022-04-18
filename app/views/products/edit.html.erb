@@ -1,20 +1,22 @@
-<% content_for :title do %>
-  Update A Category
-<% end %>
 <%= render "shared/admin_nav" %>
+
+<% content_for :title do %>
+  Edit Product
+<% end %>
+
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
-      <div class="col-lg-7 col-sm-12">
-        <div class="card">
+      <div class="col-lg-12 col-sm-12">
+        <div class="card mt-2">
           <div class="ms-4">
-            <%= link_to categories_path, :class=>"btn btn-light" do %>
+            <%= link_to products_path, :class=>"btn btn-light" do %>
               <i class="fas fa-arrow-left"></i>
             <% end %>
-            <span class="h4 text-muted mb-5 fw-bold ms-2">Update A Category</span>
+            <span class="h4 text-muted mb-5 fw-bold ms-2">Edit Product</span>
           </div>
           <hr class="style3">
           <div class="card-body">
-            <%= render 'form', category: @category %>
+            <%= render 'form', product: @product %>
           </div>
         </div>
       </div>

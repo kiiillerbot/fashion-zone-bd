@@ -55,3 +55,4 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'chartkick', '~> 4.1', '>= 4.1.3'
 gem "groupdate"
+gem 'trix-rails', require: 'trix'

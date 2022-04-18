@@ -1,0 +1,52 @@
+
+<%= simple_form_for(@product) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <small class="text-muted">Name</small><br>
+    <%= f.input :name, label: false, placeholder: "Product name" %>
+
+    <div class="mt-2">
+      <small class="text-muted">Product Category</small><br>
+      <%= f.association :category, label: false, prompt: "Select product category" %>
+    </div>
+    <div class="mt-2">
+      <small class="text-muted">Before Price</small><br>
+      <%= f.input :before_price, label: false, placeholder: "Before price amount"%>
+    </div>
+    <div class="mt-2">
+      <small class="text-muted">After Price</small><br>
+      <%= f.input :after_price, label: false, placeholder: "After price amount"%>
+    </div>
+
+    <div class="my-2">
+      <small class="text-muted">Product Availiability</small><br>
+      <%= f.input :availiability, label: false, collection: ["In Stock", "Arriving Soon"], prompt: "Select product availability"%>
+    </div>
+    
+    <div class="mt-2">
+      <small class="text-muted">Image URL</small><br>
+      <%= f.input :image, label: false, placeholder: "Product image"%>
+    </div>
+
+    <div class="mt-2">
+      <small class="text-muted">Description</small><br>
+      <%= f.input :description, as: :trix_editor, label: false, placeholder: "Product description"%>
+    </div>
+
+    <%= f.association :user, as: :hidden %>
+  </div>
+
+  <div class="form-action mt-2 pt-2">
+    <%= button_tag 'Save',
+      class: 'btn btn-orange btn-block btn-lg', 
+      data: { disable_with: "<i class='fas fa-spinner'></i> Saving ..."} %>
+  </div>
+
+  <div class="mt-2 text-center">
+    <small>
+      <%= link_to "Back To Products", products_path, :class=>"text-muted"%>
+    </small>
+  </div>
+<% end %>

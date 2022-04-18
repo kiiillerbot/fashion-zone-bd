@@ -1,3 +1,4 @@
+@import "trix";
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@500&display=swap');
 
 html, body{
@@ -43,4 +44,17 @@ html, body{
 
 .link-orange{
   color: #EE4E2E !important;
+}
+
+// Hide The Grey Inactive Progress Bar Of Trix Editor File Upload
+.attachment__progress{
+  display: none;
+}
+
+// Hide The Attachment Icon On From Trix Editor
+.trix-button-group.trix-button-group--file-tools{display: none;}
+
+.trix-content{
+  height: 250px;
+  overflow-y: auto;
 }

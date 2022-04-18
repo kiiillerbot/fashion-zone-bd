@@ -12,18 +12,20 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <a class="navbar-brand mt-2 mt-lg-0" href="/">
         <%= image_tag("cart.png", :size=>"40x40")%> Fashion Zone BD
       </a>
       <ul class="navbar-nav mb-2 mb-lg-0">
+        <%= link_to dashboard_path, :class=>"nav-link #{'active' if controller_name == 'pages'}" do %>
+          <i class="fa-solid fa-house-chimney-crack"></i> Home</span>
+        <% end %>
         <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="fa-solid fa-house-crack"></i> Home</a>
+          <%= link_to products_path, :class=>"nav-link #{'active' if controller_name == 'products'}" do %>
+            <i class="fa-solid fa-box"></i> Products
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-solid fa-box"></i> Products</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to categories_path, :class=>"nav-link" do %>
+          <%= link_to categories_path, :class=>"nav-link #{'active' if controller_name == 'categories'}" do %>
             <i class="fa-solid fa-chart-simple"></i> Categories
           <% end %>
         </li>

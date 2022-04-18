@@ -1,0 +1,153 @@
+<% content_for :title do %>
+  All Products
+<% end %>
+
+<% if user_signed_in? %>
+  <%= render "shared/admin_nav" %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-sm-12">
+        <div class="p-5 text-center bg-light">
+          <h1 class="mb-3">All Products</h1>
+          <h4 class="mb-3">Total <%= Product.all.count %> <%= Product.all.count > 1? "products":"product"%> found!</h4>
+          <%= link_to new_product_path, :class=>"btn btn-orange" do %>
+            <i class="fa-solid fa-plus"></i> New Product
+          <% end %>
+          <!--------------------- CHART ------------------->
+            <div class="card mt-3">
+              <div class="card-body">
+                <%= line_chart Product.group_by_month(:created_at).count, library: {animation: {easing: 'easeOutQuad'}} %>
+              </div>
+            </div>
+          <!--------------------/ CHART ------------------->
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-4">
+      <div class="col-lg-12 col-sm-12">
+        <table class="table text-muted">
+          <thead>
+            <tr>
+              <th><i class="fa-solid fa-hashtag"></i> ID</th>
+              <th><i class="fa-solid fa-clock-rotate-left"></i> Active Since</th>
+              <th><i class="fa-solid fa-gift"></i> Name</th>
+              <th><i class="fa-solid fa-boxes-stacked"></i> Category</th>
+              <th><i class="fa-solid fa-signal"></i> Availiability</th>
+              <th colspan="3"><i class="fa-solid fa-gear"></i> Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= product.id %></td>
+                <td><%= product.created_at.strftime("%B, %d, %Y") %></td>
+                <td><%= link_to product.name, product %></td>
+                <td><%= link_to product.category.name, product.category %></td>
+                <td>
+                  <% if product.availiability == "In Stock" %>
+                    <span class="badge rounded-pill badge-primary pt-2"><%= product.availiability %></span>
+                  <% else %>
+                    <span class="badge rounded-pill badge-danger pt-2"><%= product.availiability %></span>
+                  <% end %>
+                </td>
+                <td><%= link_to 'Show', product, :class=>"link-orange" %></td>
+                <td><%= link_to 'Edit', edit_product_path(product), :class=>"link-orange" %></td>
+                <td>
+                  <a href="#" class="link-orange" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Delete</a>
+                </td>
+              </tr>
+              
+              <!------------------------- MODAL ----------------------->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        After you delete the category, you can't restore it.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                        <%= link_to product, method: :delete, :class=>"btn btn-danger" do %>
+                          Delete
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <!------------------------/ MODAL ----------------------->
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% else %>
+<%= render "shared/public_nav" %>
+<div class="container-fluid mt-2">
+  <div class="row justify-content-center">
+    <%= form_tag(products_path, method: :get, class: "row row-cols-lg-auto g-3 align-items-center justify-content-center", role: 'search') do %>
+        <div class="col-12">              
+          <%= text_field_tag :term, 
+              params[:term], 
+              id: 'products_search', 
+              autocomplete: :off, 
+              placeholder: 'Search product', 
+              class: 'form-control py-1' %>
+        </div>
+
+        <div class="col-12">
+          <%= button_tag(type: "submit", class: "btn btn-orange") do %>
+            <i class="fas fa-search me-1"></i> Search
+          <% end %>
+
+          <%= link_to products_path, :class=>"btn btn-orange" do %>
+            <i class="fa-solid fa-arrows-rotate me-1"></i> Reset
+          <% end %>
+
+          <%= link_to categories_path, :class=>"btn btn-orange" do %>
+            <i class="fa-solid fa-boxes-stacked me-1"></i> Categories
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+    <div class="row justify-content-center mt-4">
+      <% @products.each do |product| %>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              <%= image_tag(product.image, :class=>"img-fluid")%>
+              <%= link_to product do %>
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <div class="float-end"><h5>BDT <strike><%= product.before_price%></strike> <%= product.after_price %></h5></div>
+              <h5 class="card-title">
+                <%= product.name %> <span class="badge badge-info rounded-pill pt-2">In <%= product.category.name %></span>
+              </h5>
+              <small class="text-muted">
+                <% if product.availiability == "In Stock" %>
+                  <span class="text-success"><i class="fa-solid fa-arrow-trend-up me-1"></i> <%= product.availiability %></span>
+                <% else %>
+                  <span class="text-info"><i class="fa-solid fa-circle-notch me-1"></i><%= product.availiability %></span>
+                <% end %>
+              </small>
+              <br>
+              <small class="text-muted">Selling since <%= product.created_at.strftime("%B, %d, %Y")%></small>
+              <br>
+              <div class="mt-2">
+                <%= link_to product, :class=>"btn btn-orange col-12" do %>
+                  Browse <i class="fa-solid fa-arrow-right"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
