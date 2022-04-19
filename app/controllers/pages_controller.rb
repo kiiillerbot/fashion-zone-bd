@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       redirect_to dashboard_path
     end
 
-    @products = Product.limit(12)
+    @products = Product.last(12)
   end
 
   def dashboard

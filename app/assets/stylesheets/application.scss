@@ -62,3 +62,9 @@ html, body{
 .bg-light-orange{
   background-color: #FBE9E7 !important;
 }
+
+// Pagination
+li.active.page-item > a{
+  background-color: #EE4E2E !important;
+  color: #fff !important;
+}

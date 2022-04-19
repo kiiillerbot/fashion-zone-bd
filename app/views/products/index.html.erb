@@ -145,3 +145,13 @@
     </div>
   </div>
 <% end %>
+
+<nav aria-label="Page navigation example mt-5">
+  <ul class="pagination pg-orange justify-content-center">
+    <%= will_paginate(@products,
+      :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,
+      inner_window: 1,
+      outer_window: 0,
+      class: 'text-center mb-3') %>
+  </ul>
+</nav>

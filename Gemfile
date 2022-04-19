@@ -57,3 +57,5 @@ gem 'chartkick', '~> 4.1', '>= 4.1.3'
 gem "groupdate"
 gem 'trix-rails', require: 'trix'
 gem 'cancancan', '~> 3.3'
+gem 'will_paginate', '~> 3.2', '>= 3.2.1'
+gem 'bootstrap-will_paginate', '~> 1.0'

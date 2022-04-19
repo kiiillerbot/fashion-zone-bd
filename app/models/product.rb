@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  default_scope {order(created_at: :desc)}
+
   validates_presence_of :name
   validates_presence_of :image
   validates_presence_of :description

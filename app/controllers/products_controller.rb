@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @products = if search
       Product.where("name ILIKE ?", "%#{search}%")
     else
-      Product.all
+      Product.all.paginate(page: params[:page], per_page: 12)
     end
   end
 
