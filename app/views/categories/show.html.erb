@@ -2,10 +2,16 @@
   <%= @category.name %>
 <% end %>
 
-  <div class="container-fluid h-100">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-lg-8 col-sm-12">
-        <div class="card">
+<% if user_signed_in? %>
+  <%= render "shared/admin_nav"%>
+<% else %>
+  <%= render "shared/public_nav"%>
+<% end %>
+
+  <div class="container-fluid bg-light-orange py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-sm-12">
+        <div class="card pt-3">
           <div class="ms-4">
             <%= link_to categories_path, :class=>"btn btn-light" do %>
               <i class="fas fa-arrow-left"></i>
@@ -24,52 +30,98 @@
                   <td><i class="fa-solid fa-calendar-days"></i> Created AT</td>
                   <td><%= @category.created_at.strftime("%B, %d, %Y") %></td>
                 </tr>
+                <tr>
+                  <td><i class="fa-solid fa-gift"></i> Total Products</td>
+                  <td><%= @category.products.count %></td>
+                </tr>
               </tbody>
             </table>
             <span class="badge badge-success">Category Description</span><br>
             <small class="text-muted text-justify"><%= @category.description %></small>
-            <div class="text-center mt-2">
-              <%= link_to categories_path, :class=>"btn btn-dark" do %>
-                <i class="fa-solid fa-arrow-left-long me-1"></i> Back
-              <% end %>
 
-              <%= link_to edit_category_path(@category), :class=>"btn btn-warning" do %>
-                <i class="fa-solid fa-pencil me-1"></i> Edit
-              <% end %>
+            <% if user_signed_in? %>
+              <div class="text-center mt-2">
+                <%= link_to categories_path, :class=>"btn btn-dark" do %>
+                  <i class="fa-solid fa-arrow-left-long me-1"></i> Back
+                <% end %>
 
-              <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-                Delete <i class="fa-solid fa-trash-can ms-1"></i>
-              </button>
+                <%= link_to edit_category_path(@category), :class=>"btn btn-warning" do %>
+                  <i class="fa-solid fa-pencil me-1"></i> Edit
+                <% end %>
 
-              <%= link_to new_category_path, :class=>"btn btn-success" do %>
-                New <i class="fa-solid fa-arrow-right-long ms-1"></i>
-              <% end %>
+                <button type="button" class="btn btn-danger" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                  Delete <i class="fa-solid fa-trash-can ms-1"></i>
+                </button>
 
-              <!------------------------- MODAL ----------------------->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
-                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        After you delete the category, you can't restore it.
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                        <%= link_to category_path, method: :delete, :class=>"btn btn-danger" do %>
-                          Delete
-                        <% end %>
+                <%= link_to new_category_path, :class=>"btn btn-success" do %>
+                  New <i class="fa-solid fa-arrow-right-long ms-1"></i>
+                <% end %>
+
+                <!------------------------- MODAL ----------------------->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          After you delete the category, you can't restore it.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                          <%= link_to category_path, method: :delete, :class=>"btn btn-danger" do %>
+                            Delete
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              <!------------------------/ MODAL ----------------------->
-            </div>
+                <!------------------------/ MODAL ----------------------->
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row justify-content-center mt-4">
+      <% @category.products.each do |product| %>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              <%= image_tag(product.image, :class=>"img-fluid")%>
+              <%= link_to product do %>
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <div class="float-end"><h5>BDT <strike><%= product.before_price%></strike> <%= product.after_price %></h5></div>
+              <h5 class="card-title">
+                <%= product.name %> <span class="badge badge-info rounded-pill pt-2">In <%= product.category.name %></span>
+              </h5>
+              <small class="text-muted">
+                <% if product.availiability == "In Stock" %>
+                  <span class="text-success"><i class="fa-solid fa-arrow-trend-up me-1"></i> <%= product.availiability %></span>
+                <% else %>
+                  <span class="text-info"><i class="fa-solid fa-circle-notch me-1"></i><%= product.availiability %></span>
+                <% end %>
+              </small>
+              <br>
+              <small class="text-muted">Selling since <%= product.created_at.strftime("%B, %d, %Y")%></small>
+              <br>
+              <div class="mt-2">
+                <%= link_to product, :class=>"btn btn-orange col-12" do %>
+                  Browse <i class="fa-solid fa-arrow-right"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      <% end %>
     </div>
   </div>
 
