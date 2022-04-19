@@ -14,9 +14,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @category
   end
 
   def create
+    authorize! :create, @category
     @category = current_user.categories.build(category_params)
 
     respond_to do |format|
@@ -31,6 +33,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    authorize! :update, @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
@@ -43,6 +46,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @category
     @category.destroy
 
     respond_to do |format|

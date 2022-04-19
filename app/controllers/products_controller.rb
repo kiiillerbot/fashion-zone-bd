@@ -3,11 +3,6 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
 
   def index
-    @products = Product.all
-    
-  end
-
-  def index
     search = params[:term].present? ? params[:term] : nil
     @products = if search
       Product.where("name ILIKE ?", "%#{search}%")
@@ -24,9 +19,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @product
   end
 
   def create
+    authorize! :create, @product
     @product = current_user.products.build(product_params)
 
     respond_to do |format|
@@ -41,6 +38,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    authorize! :update, @product
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
@@ -53,6 +51,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @product
     @product.destroy
 
     respond_to do |format|

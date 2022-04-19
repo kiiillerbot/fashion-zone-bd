@@ -56,3 +56,4 @@ gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'chartkick', '~> 4.1', '>= 4.1.3'
 gem "groupdate"
 gem 'trix-rails', require: 'trix'
+gem 'cancancan', '~> 3.3'
