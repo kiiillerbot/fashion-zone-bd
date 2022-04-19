@@ -80,8 +80,8 @@
   </div>
 <% else %>
 <%= render "shared/public_nav" %>
-<div class="container-fluid mt-2">
-  <div class="row justify-content-center">
+<div class="container-fluid pt-5">
+  <div class="row justify-content-center mt-2">
     <%= form_tag(products_path, method: :get, class: "row row-cols-lg-auto g-3 align-items-center justify-content-center", role: 'search') do %>
         <div class="col-12">              
           <%= text_field_tag :term, 

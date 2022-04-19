@@ -4,6 +4,16 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    
+  end
+
+  def index
+    search = params[:term].present? ? params[:term] : nil
+    @products = if search
+      Product.where("name ILIKE ?", "%#{search}%")
+    else
+      Product.all
+    end
   end
 
   def show
