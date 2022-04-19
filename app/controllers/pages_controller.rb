@@ -5,6 +5,8 @@ class PagesController < ApplicationController
     if user_signed_in?
       redirect_to dashboard_path
     end
+
+    @products = Product.limit(12)
   end
 
   def dashboard

@@ -3,3 +3,112 @@
 <% end %>
 
 <%= render "shared/public_nav" %>
+
+<section class="slider__section pt-5">
+  <div id="carouselExampleControls" class="carousel slide" data-mdb-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="d-block w-100" alt="Wild Landscape"/>
+      </div>
+      <div class="carousel-item">
+        <img src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp" class="d-block w-100" alt="Camera"/>
+      </div>
+      <div class="carousel-item">
+        <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp" class="d-block w-100" alt="Exotic Fruits"/>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls" data-mdb-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<div class="bg-orange mt-5" style="height: 140px">
+  <div class="row jutsify-content-center align-items-center">
+    <div class="col-lg-12">
+      <h4 class="text-light text-center pt-4">Latest Products</h4>
+      <div class="text-center pt-3">
+        <%= link_to products_path, :class=>"btn btn-light" do %>
+       <i class="fa-solid fa-up-right-from-square"></i> Browse All Products
+      <% end %>
+      </div>
+    </div>
+    <div>
+  </div>
+</div>
+
+<div class="container-fluid mt-5">
+  <div class="row">
+    <% @products.each do |product| %>
+        <div class="col-lg-4 col-sm-12">
+          <div class="card">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              <%= image_tag(product.image, :class=>"img-fluid")%>
+              <%= link_to product do %>
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <div class="float-end"><h5>BDT <strike><%= product.before_price%></strike> <%= product.after_price %></h5></div>
+              <h5 class="card-title">
+                <%= product.name %> <span class="badge badge-info rounded-pill pt-2">In <%= product.category.name %></span>
+              </h5>
+              <small class="text-muted">
+                <% if product.availiability == "In Stock" %>
+                  <span class="text-success"><i class="fa-solid fa-arrow-trend-up me-1"></i> <%= product.availiability %></span>
+                <% else %>
+                  <span class="text-info"><i class="fa-solid fa-circle-notch me-1"></i><%= product.availiability %></span>
+                <% end %>
+              </small>
+              <br>
+              <small class="text-muted">Selling since <%= product.created_at.strftime("%B, %d, %Y")%></small>
+              <br>
+              <div class="mt-2">
+                <%= link_to product, :class=>"btn btn-orange col-12" do %>
+                  Browse <i class="fa-solid fa-arrow-right"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <div>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </section>
+</footer>

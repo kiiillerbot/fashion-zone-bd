@@ -2,7 +2,11 @@
   <%= @product.name %>
 <% end %>
 
-<%= render "shared/admin_nav" %>
+<% if user_signed_in? %>
+  <%= render "shared/admin_nav" %>
+<% else %>
+  <%= render "shared/public_nav" %>
+<% end %>
 
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
