@@ -10,5 +10,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @products = Product.all
+    @categories = Category.all
   end
 end

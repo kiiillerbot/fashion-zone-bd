@@ -32,7 +32,9 @@
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Super Admin</a>
+          <%= link_to rails_admin_path, :class=>"nav-link" do %>
+            <i class="fa-solid fa-screwdriver-wrench"></i> Super Admin
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to  edit_user_registration_path, :class=>"nav-link" do %>
