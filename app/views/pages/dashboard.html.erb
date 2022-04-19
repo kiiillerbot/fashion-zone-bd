@@ -4,3 +4,30 @@
 
 
 <%= render "shared/admin_nav"%>
+<div class="container-fluid pt-5">
+  <div class="row justify-content-center mt-3 pt-3">
+    <small class="text-muted fw-bold"><i class="fa-solid fa-chart-simple"></i> Category Statictics</small>
+    <div class="col-lg-12 col-sm-12">
+      <!--------------------- CHART ------------------->
+        <div class="card mt-3">
+          <div class="card-body">
+            <%= line_chart Category.group_by_month(:created_at).count, library: {animation: {easing: 'easeOutQuad'}} %>
+          </div>
+        </div>
+      <!--------------------/ CHART ------------------->
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <small class="text-muted fw-bold"><i class="fa-solid fa-chart-simple"></i> Product Statictics</small>
+    <div class="col-lg-12 col-sm-12">
+      <!--------------------- CHART ------------------->
+        <div class="card mt-3">
+          <div class="card-body">
+            <%= line_chart Product.group_by_month(:created_at).count, library: {animation: {easing: 'easeOutQuad'}} %>
+          </div>
+        </div>
+      <!--------------------/ CHART ------------------->
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@
 <% if user_signed_in? %>
 <%= render "shared/admin_nav" %>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-lg-12 col-sm-12">
       <div class="p-5 text-center bg-light">
         <h1 class="mb-3">Product Categories</h1>
@@ -13,13 +13,6 @@
         <%= link_to new_category_path, :class=>"btn btn-orange" do %>
           <i class="fa-solid fa-plus"></i> New Category
         <% end %>
-        <!--------------------- CHART ------------------->
-          <div class="card mt-3">
-            <div class="card-body">
-              <%= line_chart Category.group_by_month(:created_at).count, library: {animation: {easing: 'easeOutQuad'}} %>
-            </div>
-          </div>
-        <!--------------------/ CHART ------------------->
       </div>
     </div>
   </div>
@@ -79,7 +72,7 @@
 </div>
 <% else %>
 <%= render "shared/public_nav" %>
-<div class="container-fluid mt-2">
+<div class="container-fluid mt-5">
     <div class="row justify-content-center mt-4">
       <% @categories.each do |category| %>
         <div class="col-lg-4 col-sm-12">
