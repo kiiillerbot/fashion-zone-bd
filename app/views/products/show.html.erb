@@ -36,11 +36,11 @@
                 </tr>
                 <tr>
                   <td><i class="fa-solid fa-sack-dollar"></i> Price (Before)</td>
-                  <td>BDT <%= @product.before_price %></td>
+                  <td>BDT <strike><%= @product.before_price %></td></strike>
                 </tr>
                 <tr>
                   <td><i class="fa-solid fa-sack-dollar"></i> Price (After)</td>
-                  <td>BDT <strike><%= @product.after_price %></strike></td>
+                  <td>BDT <%= @product.after_price %></td>
                 </tr>
                 <tr>
                   <td><i class="fa-solid fa-calendar-days"></i> Created AT</td>
