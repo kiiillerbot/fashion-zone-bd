@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  impressionist :actions=>[:show]
   before_action :authenticate_user!, except: [ :index, :show ]
 
   def index
@@ -7,6 +8,7 @@ class ProductsController < ApplicationController
   end
   
   def show
+    impressionist @product
   end
 
   def new

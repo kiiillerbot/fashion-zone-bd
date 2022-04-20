@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  is_impressionable
   belongs_to :category
   belongs_to :user
 

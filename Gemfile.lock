@@ -91,6 +91,8 @@ GEM
       tilt
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    impressionist (1.6.1)
+      nokogiri (~> 1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -251,6 +253,7 @@ DEPENDENCIES
   duktape
   friendly_id (~> 5.4, >= 5.4.2)
   groupdate
+  impressionist (~> 1.6.1)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.4)
   pg (>= 0.18, < 2.0)

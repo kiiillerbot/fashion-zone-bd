@@ -64,6 +64,9 @@
                 <% else %>
                   <span class="text-info"><i class="fa-solid fa-circle-notch me-1"></i><%= product.availiability %></span>
                 <% end %>
+                <!------------------ View Counts ----------------->
+                  <i class="fa-solid fa-eye ms-1"></i> <%= product.impressionist_count(:filter=>:ip_address) %>
+                <!-----------------/ View Counts ----------------->
               </small>
               <br>
               <small class="text-muted">Selling since <%= product.created_at.strftime("%B, %d, %Y")%></small>

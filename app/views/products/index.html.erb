@@ -25,6 +25,7 @@
               <th><i class="fa-solid fa-hashtag"></i> ID</th>
               <th><i class="fa-solid fa-clock-rotate-left"></i> Active Since</th>
               <th><i class="fa-solid fa-gift"></i> Name</th>
+              <th><i class="fa-solid fa-eye"></i> Views</th>
               <th><i class="fa-solid fa-boxes-stacked"></i> Category</th>
               <th><i class="fa-solid fa-signal"></i> Availiability</th>
               <th colspan="3"><i class="fa-solid fa-gear"></i> Actions</th>
@@ -36,6 +37,9 @@
                 <td><%= product.id %></td>
                 <td><%= product.created_at.strftime("%B, %d, %Y") %></td>
                 <td><%= link_to product.name, product %></td>
+                <td>
+                   <%= product.impressionist_count(:filter=>:ip_address) %>
+                </td>
                 <td><%= link_to product.category.name, product.category %></td>
                 <td>
                   <% if product.availiability == "In Stock" %>
@@ -127,6 +131,9 @@
                 <% else %>
                   <span class="text-info"><i class="fa-solid fa-circle-notch me-1"></i><%= product.availiability %></span>
                 <% end %>
+                <!------------------ View Counts ----------------->
+                  <i class="fa-solid fa-eye ms-1"></i> <%= product.impressionist_count(:filter=>:ip_address) %>
+                <!-----------------/ View Counts ----------------->
               </small>
               <br>
               <small class="text-muted">Selling since <%= product.created_at.strftime("%B, %d, %Y")%></small>

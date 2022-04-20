@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  impressionist :actions=>[:show]
   before_action :authenticate_user!, only: [:dashboard]
   
   def index
