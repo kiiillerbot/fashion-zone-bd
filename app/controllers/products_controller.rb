@@ -3,14 +3,9 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show ]
 
   def index
-    search = params[:term].present? ? params[:term] : nil
-    @products = if search
-      Product.where("name ILIKE ?", "%#{search}%")
-    else
-      Product.all.paginate(page: params[:page], per_page: 12)
-    end
+    @products = Product.all.order('created_at DESC').where(["name ilike ?", "%#{params[:search]}%"]).paginate(page: params[:page], per_page: 12)
   end
-
+  
   def show
   end
 
