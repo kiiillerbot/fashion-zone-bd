@@ -123,6 +123,7 @@
             <div class="card-body">
               <div class="float-end"><h5>BDT <strike><%= product.before_price%></strike> <%= product.after_price %></h5></div>
               <h5 class="card-title">
+                <i class="fa-solid fa-hashtag"></i> <span class="badge bg-orange rounded-pill pt-2"><%= product.id %></span>
                 <%= product.name %> <span class="badge badge-info rounded-pill pt-2">In <%= product.category.name %></span>
               </h5>
               <small class="text-muted">

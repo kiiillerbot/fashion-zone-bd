@@ -10,6 +10,10 @@ class PagesController < ApplicationController
     @products = Product.last(12)
   end
 
+  def order
+    
+  end
+
   def dashboard
     @products = Product.all
     @categories = Category.all

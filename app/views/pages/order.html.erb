@@ -1,0 +1,37 @@
+<% content_for :title do %>
+  How To Order?
+<% end %>
+
+<%= render "shared/public_nav" %>
+
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-lg-8 col-sm-12">
+      <ul class="list-group list-group-light">
+        <li class="list-group-item bg-orange text-light">Order Procedure</li>
+        <li class="list-group-item">
+          <small class="text-muted">1. Choose your desired product
+            <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+            <%= link_to "View Complete List", products_path, :target=>"_blank" %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small class="text-muted">2. Get the product ID <i class="fa-solid fa-hashtag"></i> <span class="badge bg-orange rounded-pill pt-2">Product ID</span> from the name of any product.
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small class="text-muted">3. Make the payment to our bKash number <span class="badge bg-orange rounded-pill pt-2 ms-1">+8801xxxxxxxx</span>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small class="text-muted">4. Contact us to our number <span class="badge bg-orange rounded-pill pt-2 ms-1">+8801xxxxxxxx</span> and tell us the bKash 3 digits PIN as a proof of payment.
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small class="text-muted">5. Tell us the delivery address, and we will deliver your product as soon as possible.
+          </small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
