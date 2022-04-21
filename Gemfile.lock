@@ -119,6 +119,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mail_form (1.9.0)
+      actionmailer (>= 5.2)
+      activemodel (>= 5.2)
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
@@ -256,6 +259,7 @@ DEPENDENCIES
   impressionist (~> 1.6.1)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.4)
+  mail_form
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.7)

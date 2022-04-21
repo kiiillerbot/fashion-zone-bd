@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   get 'dashboard', to: "pages#dashboard", as: :dashboard
   get 'how-to-order', to: "pages#order", as: :order
+  resources :contacts, only: [:new, :create]
   match '*path' => redirect('/'), via: :get
 end

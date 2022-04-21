@@ -1,0 +1,50 @@
+<% content_for :title do %>
+  Contact Us
+<% end %>
+
+<%= render "shared/public_nav" %>
+
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-lg-8 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <%= simple_form_for @contact, :class=>"contact-form" do |f| %>
+						<div class="form-group">
+							<%= f.input :name,
+									label: false,
+									placeholder: 'Full Name',
+									input_html:{class:"form-control"}
+							%>
+						</div>
+
+						<div class="form-group pt-2">
+							<%= f.input :email,
+									label: false,
+								  placeholder: 'Email Address',
+									input_html:{class:"form-control"}
+							%>
+						</div>
+
+						<div class="form-group pt-2">
+                <%= f.input :message,
+									  label: false,
+									  placeholder: 'Your Message',
+										input_html:{class:"form-control", rows: 8},
+                    as: :text
+								%>
+						</div>
+
+            <%= f.input :nickname, as: :hidden %>
+
+						<div class="text-center mt-2">
+                <%= f.button :submit, "Send Message", :class=>"btn btn-orange"%>
+              </div>
+
+					</div>
+					<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% content_for :title do %>
+  Thank You
+<% end %>
+
+<%= render "shared/public_nav" %>
+
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="col-lg-8 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-heading">Thank you!</h4>
+          <p class="lead">We have received your email. We will contact you back soon.</p>
+          <%= link_to "Back To Home", root_path, :class=>"btn btn-orange"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
